@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { withData } from './DataProvider';
+import "./App.css"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      toggle: true
+    }
+  }
+  componentDidMount(){
+    this.props.getJoke()
+  }
+  getJoke = () => {
+    this.props.getJoke()
+    this.setState({
+      toggle: true
+    })
+  }
+  handleToggle = () => {
+    this.setState(prevState => ({
+      toggle: !prevState.toggle
+    }))
+  }
+  render() {
+    console.log(this.state.toggle)
+    return (
+      <div>
+        <button className='next' onClick={this.getJoke}>Next Joke</button>
+        <button className='punchline'  onClick={this.handleToggle }>Punch Line</button>
+        <h1>{this.props.joke.setup}</h1>
+        {this.state.toggle ? null : <h2>{this.props.joke.punchline}</h2>}
+      </div>
+    );
+  }
 }
 
-export default App;
+export default withData(App);
