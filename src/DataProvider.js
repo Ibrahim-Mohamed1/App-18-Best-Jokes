@@ -15,7 +15,9 @@ class DataProvider extends Component {
             this.setState({
                 joke: res.data
             })
-        })
+        }).catch(function (error) {
+            window.location.reload()
+        });
     }
 
     render() {
