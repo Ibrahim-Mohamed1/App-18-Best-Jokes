@@ -24,7 +24,6 @@ class App extends Component {
     }))
   }
   render() {
-    console.log(this.state.toggle)
     return (
       <div>
         <button className='next' onClick={this.getJoke}>Next Joke</button>

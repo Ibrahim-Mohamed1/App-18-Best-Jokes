@@ -12,7 +12,6 @@ class DataProvider extends Component {
 
     getJoke = () => {
         axios.get(`https://vschool-cors.herokuapp.com?url=https://official-joke-api.appspot.com/jokes/random`).then(res => {
-          console.log(res.data)
             this.setState({
                 joke: res.data
             })
